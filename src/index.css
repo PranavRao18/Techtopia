@@ -12,3 +12,14 @@
   scroll-behavior: smooth;
   color-scheme: dark;
 }
+
+.quiz-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url('../assets/download.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
