@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import QuizQuestion from '../components/QuizQuestion';
-import '../index.css'; 
+import '../index.css';
 
 const QuizPage = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -103,24 +103,22 @@ const QuizPage = () => {
 
   const handleAnswer = (selectedOption) => {
     setSelectedAnswer(selectedOption);
+
+    // Check if the selected answer is correct and update the score
+    if (selectedOption === questions[currentQuestion].correctAnswer) {
+      setScore((prevScore) => prevScore + 1);
+    }
   };
 
   const handleNextQuestion = () => {
-    // Check if an answer is selected before moving to the next question
-    if (selectedAnswer !== null) {
-      if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-        setScore(score + 1);
-      }
-
-      setSelectedAnswer(null); // Reset selected answer for the next question
-
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1);
-        setTimeLeft(10); // Reset timer for the next question
-      } else {
-        // Quiz completed, show total score or navigate to a different component/page
-        alert(`Quiz Completed! Your total score is ${score}/${questions.length}`);
-      }
+    // Move to the next question without checking for the selected answer
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setTimeLeft(10); // Reset the timer for the next question
+      setSelectedAnswer(null); // Reset the selected answer for the next question
+    } else {
+      // Quiz completed, show the total score or navigate to a different component/page
+      alert(`Quiz Completed! Your total score is ${score}/${questions.length}`);
     }
   };
 
@@ -129,7 +127,7 @@ const QuizPage = () => {
       <div className="quiz-card bg-white bg-opacity-80 p-8 rounded-md text-center max-w-md">
         <QuizQuestion
           question={questions[currentQuestion].question}
-          options={questions[currentQuestion].options}
+        //   options={questions[currentQuestion].options}
           selectedAnswer={selectedAnswer}
           onAnswer={handleAnswer}
           timeLeft={timeLeft}
@@ -138,15 +136,15 @@ const QuizPage = () => {
           <ul>
             {questions[currentQuestion].options.map((option, index) => (
               <li key={index} className="text-lg mb-2">
-                <label className="inline-flex items-center">
+                <label className="inline-flex items-center" style={{ color: 'black' }}>
                   <input
                     type="radio"
                     id={`option${index}`}
                     name="answerOptions"
                     value={option}
                     checked={selectedAnswer === option}
-                    onChange={() => onAnswer(option)}
-                    className="form-radio h-5 w-5 text-green-500"
+                    onChange={() => handleAnswer(option)}
+                    className="form-radio h-5 w-5 text-black"
                   />
                   <span className="ml-2">{option}</span>
                 </label>

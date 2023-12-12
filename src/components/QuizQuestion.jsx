@@ -1,10 +1,12 @@
+// QuizQuestion.js
+
 import React from 'react';
 
 const QuizQuestion = ({ question, options, selectedAnswer, onAnswer, timeLeft }) => {
   return (
-    <div className="quiz-question">
+    <div className="quiz-question text-black">
       <h3>{question}</h3>
-      <div className="options">
+      {/* <div className="options">
         {options.map((option, index) => (
           <div key={index}>
             <input
@@ -18,7 +20,7 @@ const QuizQuestion = ({ question, options, selectedAnswer, onAnswer, timeLeft })
             <label htmlFor={`option${index}`}>{option}</label>
           </div>
         ))}
-      </div>
+      </div> */}
       <p>Time Left: {timeLeft}s</p>
     </div>
   );
