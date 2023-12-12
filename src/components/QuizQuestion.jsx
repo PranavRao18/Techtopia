@@ -1,12 +1,9 @@
-// QuizQuestion.js
-
 import React from 'react';
 
-const QuizQuestion = ({ question, options, selectedAnswer, onAnswer, timeLeft }) => {
+const QuizQuestion = ({ question, selectedAnswer, onAnswer }) => {
   return (
     <div className="quiz-question text-black">
       <h3>{question}</h3>
-      <p>Time Left: {timeLeft}s</p>
     </div>
   );
 };
