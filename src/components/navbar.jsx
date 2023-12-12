@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import { menu, close } from '../assets';
+import DarkModeToggle from "./DarkModeToggle";
+import { useDarkMode } from '../DarkModeContext';
 
 function Navbar() {
     const [toggle, setToggle] = useState(false);
-
+    const { darkMode } = useDarkMode();
 
     return (
-        <nav className={`px-6 md:px-16 lg:px-28 w-full flex items-center py-10 fixed top-0 z-20 bg-primary`}>
+        <nav className={`px-6 md:px-16 lg:px-28 w-full flex items-center py-10 fixed top-0 z-20`}
+            style={{
+                background: darkMode
+                    ? 'linear-gradient(to bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8))'
+                    : 'linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5))'
+            }}>
             <div className="w-full flex justify-between items-center mx-auto">
                 <Link
                     to="/"
@@ -16,7 +23,7 @@ function Navbar() {
                         window.scrollTo(0, 0);
                     }}
                 >
-                    <p className="text-white text-[22px] font-semibold cursor-pointer">InfinityVoyage</p>
+                    <p className={darkMode ? 'text-black text-[22px] font-semibold cursor-pointer' : 'text-white text-[22px] font-semibold cursor-pointer'}>InfinityVoyage</p>
                 </Link>
                 <ul className='list-none hidden sm:flex flex-row gap-20'>
                     <li
@@ -29,7 +36,7 @@ function Navbar() {
                                 window.scrollTo(0, 0);
                             }}
                         >
-                            <p className="text-white text-[22px] font-medium cursor-pointer">News</p>
+                            <p className={darkMode ? "text-black text-[22px] font-medium cursor-pointer" : "text-white text-[22px] font-medium cursor-pointer"}>News</p>
                         </Link>
                     </li>
                     <li
@@ -43,9 +50,12 @@ function Navbar() {
                             }}
                         >
                             <div className="bg-[#6891FF] p-2 px-6 rounded-[5px] -m-2 hover:scale-110">
-                                <p className="text-white text-[22px] font-medium cursor-pointer">Quiz</p>
+                                <p className={darkMode ? "text-black text-[22px] font-medium cursor-pointer" : "text-white text-[22px] font-medium cursor-pointer"}>Quiz</p>
                             </div>
                         </Link>
+                    </li>
+                    <li>
+                        <DarkModeToggle />
                     </li>
                 </ul>
                 <div className="sm:hidden flex flex-1 justify-end items-center">
