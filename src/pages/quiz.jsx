@@ -11,53 +11,7 @@ const QuizPage = () => {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   const questions = [
-    // ... (same questions as before)
     {
-        "question": "What is the largest moon in our solar system?",
-        "options": ["Ganymede", "Titan", "Io", "Europa"],
-        "correctAnswer": "Ganymede"
-      },
-      {
-        "question": "What is the only natural satellite of Earth?",
-        "options": ["Deimos", "Phobos", "Luna", "Triton"],
-        "correctAnswer": "Luna"
-      },
-      {
-        "question": "What is the dark, flat plains on the Moon's surface called?",
-        "options": ["Craters", "Highlands", "Rilles", "Maria"],
-        "correctAnswer": "Maria"
-      },
-      {
-        "question": "Which planet is known as the 'Red Planet'?",
-        "options": ["Mars", "Jupiter", "Venus", "Saturn"],
-        "correctAnswer": "Mars"
-      },
-      {
-        "question": "What is the largest planet in our solar system?",
-        "options": ["Saturn", "Jupiter", "Neptune", "Uranus"],
-        "correctAnswer": "Jupiter"
-      },
-      {
-        "question": "Which planet is often referred to as the 'Morning Star' or 'Evening Star'?",
-        "options": ["Mercury", "Venus", "Mars", "Jupiter"],
-        "correctAnswer": "Venus"
-      },
-      {
-        "question": "What is the closest star to Earth?",
-        "options": ["Alpha Centauri", "Sirius", "Proxima Centauri", "Betelgeuse"],
-        "correctAnswer": "Proxima Centauri"
-      },
-      {
-        "question": "What is a group of stars forming a recognizable pattern called?",
-        "options": ["Constellation", "Galaxy", "Nebula", "Cluster"],
-        "correctAnswer": "Constellation"
-      },
-      {
-        "question": "What is the process by which a star exhausts the nuclear fuel in its core and collapses under the force of gravity?",
-        "options": ["Supernova", "Black Hole Formation", "Nebula Formation", "Red Giant Stage"],
-        "correctAnswer": "Supernova"
-      },
-      {
         "question": "Who was the first human to travel into space?",
         "options": ["Yuri Gagarin", "Alan Shepard", "John Glenn", "Neil Armstrong"],
         "correctAnswer": "Yuri Gagarin"
@@ -66,26 +20,6 @@ const QuizPage = () => {
         "question": "What is the name of the Mars rover that successfully landed in 2021 to search for signs of ancient life?",
         "options": ["Spirit", "Opportunity", "Curiosity", "Perseverance"],
         "correctAnswer": "Perseverance"
-      },
-      {
-        "question": "Which spacecraft carried the first humans to the Moon in 1969?",
-        "options": ["Apollo 11", "Gemini 4", "Sputnik 1", "Vostok 1"],
-        "correctAnswer": "Apollo 11"
-      },
-      {
-        "question": "What is the name of our galaxy?",
-        "options": ["Andromeda", "Triangulum", "Milky Way", "Sombrero"],
-        "correctAnswer": "Milky Way"
-      },
-      {
-        "question": "What is the closest neighboring galaxy to the Milky Way?",
-        "options": ["Andromeda", "Triangulum", "Large Magellanic Cloud", "Small Magellanic Cloud"],
-        "correctAnswer": "Andromeda"
-      },
-      {
-        "question": "What is the term for a small, dense remnant of a star that has undergone a supernova explosion?",
-        "options": ["Quasar", "Pulsar", "White Dwarf", "Neutron Star"],
-        "correctAnswer": "Neutron Star"
       }
   ];
 
@@ -104,20 +38,17 @@ const QuizPage = () => {
   const handleAnswer = (selectedOption) => {
     setSelectedAnswer(selectedOption);
 
-    // Check if the selected answer is correct and update the score
     if (selectedOption === questions[currentQuestion].correctAnswer) {
       setScore((prevScore) => prevScore + 1);
     }
   };
 
   const handleNextQuestion = () => {
-    // Move to the next question without checking for the selected answer
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
-      setTimeLeft(10); // Reset the timer for the next question
-      setSelectedAnswer(null); // Reset the selected answer for the next question
+      setTimeLeft(10);
+      setSelectedAnswer(null);
     } else {
-      // Quiz completed, show the total score or navigate to a different component/page
       alert(`Quiz Completed! Your total score is ${score}/${questions.length}`);
     }
   };
@@ -127,7 +58,6 @@ const QuizPage = () => {
       <div className="quiz-card bg-white bg-opacity-80 p-8 rounded-md text-center max-w-md">
         <QuizQuestion
           question={questions[currentQuestion].question}
-        //   options={questions[currentQuestion].options}
           selectedAnswer={selectedAnswer}
           onAnswer={handleAnswer}
           timeLeft={timeLeft}
