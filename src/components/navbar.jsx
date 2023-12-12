@@ -17,7 +17,7 @@ function Navbar() {
             }}>
             <div className="w-full flex justify-between items-center mx-auto">
                 <Link
-                    to="/"
+                    to="/home"
                     className="flex items-center gap-2"
                     onClick={() => {
                         window.scrollTo(0, 0);
