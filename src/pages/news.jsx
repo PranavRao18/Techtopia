@@ -7,15 +7,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { useDarkMode } from '../DarkModeContext';
+import 'particles.js';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
-export function AddLibrary(urlOfTheLibrary) {
-    const script = document.createElement("script");
-    script.src = urlOfTheLibrary;
-    script.async = true;
-    document.body.appendChild(script);
-}
-
-const NewsCarousel = () => {
+const News = () => {
     const [newsData, setNewsData] = useState([]);
     const apiKey = import.meta.env.VITE_API_KEY;
     const darkMode = useDarkMode();
@@ -39,6 +35,7 @@ const NewsCarousel = () => {
 
         fetchNews();
     }, [apiKey]);
+
 
 
     const NextArrow = (props) => {
@@ -69,8 +66,10 @@ const NewsCarousel = () => {
         prevArrow: <PrevArrow />,
     };
 
+    document.getElementsByClassName('carousel-3d-basic').mdbCarousel3d();
+
     return (
-        <div id="paticles-js" className={`${darkMode? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
+        <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
             <h1 className="text-3xl sm:text-6xl font-bold mb-20 ">Latest Space News</h1>
             <div className="max-w-2xl mx-auto p-4 bg-gray-800 rounded">
                 <Slider {...settings}>
@@ -98,12 +97,29 @@ const NewsCarousel = () => {
                         </a>
                     ))}
                 </Slider>
-
             </div>
-            {AddLibrary('/index.js')}
         </div>
+        // <div class="container">
+        //     <div class="carousel-3d carousel-3d-controls">
+        //         <div class="carousel-3d-inner">
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(45).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(47).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(48).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(49).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(50).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(51).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(52).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(53).webp" alt="Slide"/></div>
+        //         </div>
+        //         <div class="carousel-3d-controls">
+        //             <a class="prev-btn waves-effect waves-light"><i class="fas fa-chevron-left"></i></a>
+        //             <a class="next-btn waves-effect waves-light"><i class="fas fa-chevron-right"></i></a>
+        //         </div>
+        //     </div>
+        // </div>
     );
 };
 
 
-export default NewsCarousel;
+export default News;

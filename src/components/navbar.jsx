@@ -30,7 +30,7 @@ function Navbar() {
                         className={`text-secondary hover:text-white text-[22px] font-light cursor-pointer`}
                     >
                         <Link
-                            to="/"
+                            to="/news"
                             className="flex items-center gap-2"
                             onClick={() => {
                                 window.scrollTo(0, 0);
