@@ -8,7 +8,14 @@ import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { useDarkMode } from '../DarkModeContext';
 
-const News = () => {
+export function AddLibrary(urlOfTheLibrary) {
+    const script = document.createElement("script");
+    script.src = urlOfTheLibrary;
+    script.async = true;
+    document.body.appendChild(script);
+}
+ 
+const NewsCarousel = () => {
     const [newsData, setNewsData] = useState([]);
     const apiKey = import.meta.env.VITE_API_KEY;
     const darkMode = useDarkMode();
