@@ -19,13 +19,13 @@ export function AddLibrary(urlOfTheLibrary) {
 const News = () => {
     const [newsData, setNewsData] = useState([]);
     const apiKey = import.meta.env.VITE_API_KEY;
-    const darkMode = useDarkMode();
+    const { darkMode } = useDarkMode();
 
     useEffect(() => {
         const fetchNews = async () => {
             try {
                 const response = await fetch(
-                    `https://newsapi.org/v2/everything?q=isro OR nasa OR spacex&language=en&apiKey=${apiKey}&sortBy=publishedAt&pageSize=5`
+                    `https://newsapi.org/v2/everything?q=rocket AND space&language=en&apiKey=${apiKey}&sortBy=publishedAt&pageSize=5`
                 );
                 const data = await response.json();
                 if (response.ok) {
@@ -71,14 +71,15 @@ const News = () => {
         prevArrow: <PrevArrow />,
     };
 
+    console.log(darkMode ? 'Yes' : 'no');
 
     return (
         <>
-        <div id='particles-js' className='absolute top-0 z-0'>{AddLibrary("/index.js")}</div>
+        <div id={`${darkMode ? 'particles-js-light' : 'particles-js'}`} className='absolute top-0 z-0 h-screen w-screen'>{`${darkMode ? AddLibrary("/index-light.js") :  AddLibrary("/index.js") }`}</div>
         <div className={`w-screen h-screen flex items-center pt-20 fixed top-0 z-19 bg-clear`}>
             <Navbar />
-            <div className="text-center mb-20 pt-20 sm:pt-40 w-full">
-                <h1 className="text-3xl sm:text-6xl font-bold mb-4 sm:mb-20">Latest Space News</h1>
+            <div className={`text-center mb-20 pt-20 sm:pt-40 w-full`}>
+                <h1 className={`text-3xl sm:text-6xl font-bold mb-4 sm:mb-20 ${darkMode ? 'text-black' : 'text-white' }`}>Latest Space News</h1>
                 <div className="max-w-2xl mx-auto p-4 bg-gray-800 rounded">
                     <Slider {...settings}>
                         {newsData.map((article, index) => (
