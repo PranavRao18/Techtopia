@@ -29,10 +29,6 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url('../assets/download.jpeg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
 .option-item:hover {
@@ -41,7 +37,7 @@
 }
 
 .next-button:hover {
-  background-color: #4CAF50;
+  background-color: #6891FF;
   transform: scale(1.1);
   transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }

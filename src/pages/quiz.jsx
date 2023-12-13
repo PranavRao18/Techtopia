@@ -3,7 +3,14 @@ import QuizQuestion from '../components/QuizQuestion';
 import { Timer } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom'; // Update import
 import '../index.css';
-import backgroundImage from '../assets/download.jpeg';
+import Navbar from '../components/navbar';
+
+export function AddLibrary(urlOfTheLibrary) {
+    const script = document.createElement("script");
+    script.src = urlOfTheLibrary;
+    script.async = true;
+    document.body.appendChild(script);
+}
 
 const QuizPage = () => {
     const navigate = useNavigate(); // Update hook
@@ -66,6 +73,8 @@ const QuizPage = () => {
         }
     ];
 
+    
+
     useEffect(() => {
         const timer = setInterval(() => {
             if (timeLeft > 0) {
@@ -81,20 +90,21 @@ const QuizPage = () => {
 
     const handleAnswer = (selectedOption) => {
         setSelectedAnswer(selectedOption);
-    
-        if (selectedOption === questions[currentQuestion].correctAnswer) {
-            setScore((prevScore) => prevScore + 1 );
-            console.log(score);
-        }
+
     };    
 
     const handleNextQuestion = () => {
+        if (selectedAnswer === questions[currentQuestion].correctAnswer) {
+            setScore((prevScore) => prevScore + 1 );
+            console.log(score);
+        }
         if (currentQuestion < questions.length - 1) {
             setCurrentQuestion(currentQuestion + 1);
             setTimeLeft(10);
             setSelectedAnswer(null);
         } else {
             setQuizCompleted(true);
+            setSelectedAnswer(null);
         }
     };
 
@@ -104,7 +114,7 @@ const QuizPage = () => {
                 <h2 className="text-2xl font-bold mb-4 text-black">Quiz Completed!</h2>
                 <p className="text-lg mb-4 text-black">Your total score is {score}/{questions.length}</p>
                 <button
-                    className="next-button bg-green-500 text-white px-4 py-2 rounded-md"
+                    className="next-button bg-[#6891FF] text-white px-4 py-2 rounded-md"
                     onClick={() => navigate('/home')} 
                 >
                     Home Page
@@ -114,7 +124,9 @@ const QuizPage = () => {
     };
 
     return (
-        <div className="quiz-page flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat style={{ backgroundImage: `url(${backgroundImage})` }}">
+        <>
+        <Navbar/>
+        <div id='particles-js' className="quiz-page flex items-center justify-center h-screen bg-black` }}">
             <div className="quiz-card bg-white bg-opacity-80 p-8 rounded-md text-center max-w-md relative">
                 {quizCompleted ? (
                     handleQuizComplete()
@@ -150,7 +162,7 @@ const QuizPage = () => {
                             </ul>
                         </div>
                         <button
-                            className="next-button bg-green-500 text-white px-4 py-2 rounded-md mt-4"
+                            className="next-button bg-[#6891FF] text-white px-4 py-2 rounded-md mt-4"
                             onClick={handleNextQuestion}
                         >
                             Next Question
@@ -158,7 +170,9 @@ const QuizPage = () => {
                     </React.Fragment>
                 )}
             </div>
+            {AddLibrary("/index.js")}
         </div>
+        </>
     );
 };
 
