@@ -3,7 +3,6 @@ import QuizQuestion from '../components/QuizQuestion';
 import { Timer } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom'; // Update import
 import '../index.css';
-import backgroundImage from '../assets/download.jpeg';
 
 const QuizPage = () => {
     const navigate = useNavigate(); // Update hook
@@ -73,30 +72,39 @@ const QuizPage = () => {
             } else {
                 handleNextQuestion();
                 setTimeLeft(10);
+                setSelectedAnswer(null);
             }
         }, 1000);
     
         return () => clearInterval(timer);
-    }, [timeLeft, currentQuestion]);  
-
+    }, [timeLeft, currentQuestion]); 
+     
     const handleAnswer = (selectedOption) => {
-        setSelectedAnswer(selectedOption);
+        if (selectedOption !== selectedAnswer) {
+            setSelectedAnswer(selectedOption);
     
-        if (selectedOption === questions[currentQuestion].correctAnswer) {
-            setScore((prevScore) => prevScore + 1 );
-            console.log(score);
+            if (selectedOption === questions[currentQuestion].correctAnswer) {
+                setScore((prevScore) => prevScore + 1);
+                console.log('New Score:', score + 1);
+            }
         }
-    };    
-
+    };
+    
+    
     const handleNextQuestion = () => {
         if (currentQuestion < questions.length - 1) {
-            setCurrentQuestion(currentQuestion + 1);
+            setCurrentQuestion((prevQuestion) => {
+                const newQuestion = prevQuestion + 1;
+                console.log('Next Question:', newQuestion);
+                return newQuestion;
+            });
             setTimeLeft(10);
             setSelectedAnswer(null);
         } else {
             setQuizCompleted(true);
         }
     };
+        
 
     const handleQuizComplete = () => {
         return (
@@ -114,7 +122,7 @@ const QuizPage = () => {
     };
 
     return (
-        <div className="quiz-page flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat style={{ backgroundImage: `url(${backgroundImage})` }}">
+        <div className="quiz-page flex items-center justify-center h-screen bg-cover bg-center bg-no-repeat style={{ backgroundImage: `url(${})` }}">
             <div className="quiz-card bg-white bg-opacity-80 p-8 rounded-md text-center max-w-md relative">
                 {quizCompleted ? (
                     handleQuizComplete()

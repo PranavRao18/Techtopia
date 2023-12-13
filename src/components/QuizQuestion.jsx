@@ -1,6 +1,6 @@
 import React from 'react';
 
-const QuizQuestion = ({ question, selectedAnswer, onAnswer }) => {
+const QuizQuestion = ({ question }) => {
   return (
     <div className="quiz-question text-black">
       <h3>{question}</h3>
