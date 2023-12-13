@@ -11,7 +11,7 @@ const SectionWrapper = (Component, idName) => function HOC() {
             viewport={{ once: true, amount: 0.5 }}
             className={`z-0 p-0 m-0`}
         >
-            <span id={idName}>&nbsp;</span>
+            <span id={idName}></span>
             <Component />
         </motion.section>
     )
