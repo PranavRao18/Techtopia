@@ -3,6 +3,7 @@ import Navbar from '../components/navbar';
 import spaceImage from '../assets/space7.jpg';
 import { useDarkMode } from '../DarkModeContext';
 import scomp1 from '../assets/scomp1.png';
+import scomp2 from '../assets/scomp4.png';
 
 const Event4 = () => {
     const { darkMode } = useDarkMode();
@@ -13,6 +14,7 @@ const Event4 = () => {
                 <Navbar />
                 <div className="h-full flex flex-col-reverse sm:flex-row items-center justify-center p-8 relative">
                     <div className="w-full sm:w-1/2">
+                        <img src={scomp2} className="absolute w-1/2 sm:w-1/3 left-0 -bottom-12 sm:top-20" alt="Event Image" />
                         <h1 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-medium text-white text-center sm:text-justify drop-shadow-lg p-2 sm:p-20">
                             Blue Origin is aiming to begin construction of its Orbital Reef commercial space station in 2024. This station would be a privately-owned and operated facility that could be used for research, manufacturing, and tourism.
                         </h1>
