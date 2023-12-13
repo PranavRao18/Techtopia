@@ -6,10 +6,19 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
+import { useDarkMode } from '../DarkModeContext';
+
+export function AddLibrary(urlOfTheLibrary) {
+    const script = document.createElement("script");
+    script.src = urlOfTheLibrary;
+    script.async = true;
+    document.body.appendChild(script);
+}
 
 const NewsCarousel = () => {
     const [newsData, setNewsData] = useState([]);
     const apiKey = import.meta.env.VITE_API_KEY;
+    const darkMode = useDarkMode();
 
     useEffect(() => {
         const fetchNews = async () => {
@@ -61,27 +70,40 @@ const NewsCarousel = () => {
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-4 bg-gray-100 rounded">
-            <h1 className="text-3xl font-bold mb-4">Latest Space News</h1>
-            <Slider {...settings}>
-                {newsData.map((article, index) => (
-                    <a
-                        key={index}
-                        href={article.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-decoration-none"
-                    >
-                        <div className="bg-white p-4 rounded shadow-md">
-                            <h2 className="text-xl font-bold mb-2">{article.title}</h2>
-                            <p className="text-gray-700 mb-2">{article.description}</p>
-                            <p className="text-gray-500">Published At: {article.publishedAt}</p>
-                        </div>
-                    </a>
-                ))}
-            </Slider>
+        <div id="paticles-js" className={`${darkMode? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
+            <h1 className="text-3xl sm:text-6xl font-bold mb-20 ">Latest Space News</h1>
+            <div className="max-w-2xl mx-auto p-4 bg-gray-800 rounded">
+                <Slider {...settings}>
+                    {newsData.map((article, index) => (
+                        <a
+                            key={index}
+                            href={article.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-decoration-none"
+                        >
+                            <div className="bg-gray-700 p-4 rounded shadow-md" style={{ minHeight: '400px' }}>
+                                {article.urlToImage && (
+                                    <img
+                                        src={article.urlToImage}
+                                        alt="News Thumbnail"
+                                        className="mb-4 rounded"
+                                        style={{ width: '100%', height: '290px', objectFit: 'cover' }}
+                                    />
+                                )}
+                                <h2 className="text-xl text-left font-bold mb-2">{article.title}</h2>
+                                <p className="text-white mb-2 text-left ">{article.description}</p>
+                                <p className="absolute text-gray-100 bottom-0">Published At: {article.publishedAt}</p>
+                            </div>
+                        </a>
+                    ))}
+                </Slider>
+
+            </div>
+            {AddLibrary('/index.js')}
         </div>
     );
 };
+
 
 export default NewsCarousel;
