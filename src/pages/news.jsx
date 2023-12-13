@@ -41,6 +41,7 @@ const NewsCarousel = () => {
     }, [apiKey]);
 
 
+
     const NextArrow = (props) => {
         const { className, onClick } = props;
         return (
@@ -69,8 +70,10 @@ const NewsCarousel = () => {
         prevArrow: <PrevArrow />,
     };
 
+    document.getElementsByClassName('carousel-3d-basic').mdbCarousel3d();
+
     return (
-        <div id="paticles-js" className={`${darkMode? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
+        <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
             <h1 className="text-3xl sm:text-6xl font-bold mb-20 ">Latest Space News</h1>
             <div className="max-w-2xl mx-auto p-4 bg-gray-800 rounded">
                 <Slider {...settings}>
@@ -98,12 +101,29 @@ const NewsCarousel = () => {
                         </a>
                     ))}
                 </Slider>
-
             </div>
-            {AddLibrary('/index.js')}
         </div>
+        // <div class="container">
+        //     <div class="carousel-3d carousel-3d-controls">
+        //         <div class="carousel-3d-inner">
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(45).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(47).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(48).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(49).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(50).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(51).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(52).webp" alt="Slide"/></div>
+        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(53).webp" alt="Slide"/></div>
+        //         </div>
+        //         <div class="carousel-3d-controls">
+        //             <a class="prev-btn waves-effect waves-light"><i class="fas fa-chevron-left"></i></a>
+        //             <a class="next-btn waves-effect waves-light"><i class="fas fa-chevron-right"></i></a>
+        //         </div>
+        //     </div>
+        // </div>
     );
 };
 
 
-export default NewsCarousel;
+export default News;
