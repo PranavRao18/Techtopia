@@ -3,7 +3,6 @@ import Navbar from '../components/navbar';
 import spaceImage from '../assets/space11.jpg';
 import { useDarkMode } from '../DarkModeContext';
 import Event1 from './Event1';
-import useScrollSnap from 'react-use-scroll-snap';
 import Event2 from './Event2';
 import Event3 from './Event3';
 import Event4 from './Event4';
