@@ -13,7 +13,7 @@ export function AddLibrary(urlOfTheLibrary) {
 }
 
 const QuizPage = () => {
-    const navigate = useNavigate(); // Update hook
+    const navigate = useNavigate(); 
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [score, setScore] = useState(0);
     const [timeLeft, setTimeLeft] = useState(10);
@@ -73,9 +73,17 @@ const QuizPage = () => {
         }
     ];
 
+    const [bg, setBg] = useState(false);
+
     
 
     useEffect(() => {
+
+        if (typeof particlesJS === "undefined") {
+            setBg(true);
+            AddLibrary("/index.js"); 
+        }
+
         const timer = setInterval(() => {
             if (timeLeft > 0) {
                 setTimeLeft((prevTime) => prevTime - 1);
@@ -126,7 +134,7 @@ const QuizPage = () => {
     return (
         <>
         <Navbar/>
-        <div id='particles-js' className="quiz-page flex items-center justify-center h-screen bg-black` }}">
+        <div id='particles-js' className="quiz-page flex items-center justify-center h-screen bg-black w-screen}}">
             <div className="quiz-card bg-white bg-opacity-80 p-8 rounded-md text-center max-w-md relative">
                 {quizCompleted ? (
                     handleQuizComplete()
@@ -170,7 +178,7 @@ const QuizPage = () => {
                     </React.Fragment>
                 )}
             </div>
-            {AddLibrary("/index.js")}
+            {!bg && AddLibrary("/index.js")}
         </div>
         </>
     );

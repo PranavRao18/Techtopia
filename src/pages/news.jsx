@@ -73,10 +73,12 @@ const News = () => {
 
 
     return (
-        <div className={`w-full flex items-center pt-20 fixed top-0 z-20 bg-black`}>
-            <Navbar/>
-            <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-40 sm:pt-60 w-full`}>
-                <h1 className="text-3xl sm:text-6xl font-bold mb-4 sm:mb-20 bg-black">Latest Space News</h1>
+        <>
+        <div id='particles-js' className='absolute top-0 z-0'>{AddLibrary("/index.js")}</div>
+        <div className={`w-screen h-screen flex items-center pt-20 fixed top-0 z-19 bg-clear`}>
+            <Navbar />
+            <div className="text-center mb-20 pt-20 sm:pt-40 w-full">
+                <h1 className="text-3xl sm:text-6xl font-bold mb-4 sm:mb-20">Latest Space News</h1>
                 <div className="max-w-2xl mx-auto p-4 bg-gray-800 rounded">
                     <Slider {...settings}>
                         {newsData.map((article, index) => (
@@ -106,7 +108,9 @@ const News = () => {
                 </div>
             </div>
         </div>
+        </>
     );
+
 };
 
 
