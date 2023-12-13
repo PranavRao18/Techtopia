@@ -14,7 +14,7 @@ export function AddLibrary(urlOfTheLibrary) {
     script.async = true;
     document.body.appendChild(script);
 }
-
+ 
 const NewsCarousel = () => {
     const [newsData, setNewsData] = useState([]);
     const apiKey = import.meta.env.VITE_API_KEY;
