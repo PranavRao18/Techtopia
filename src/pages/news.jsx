@@ -16,6 +16,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { useDarkMode } from '../DarkModeContext';
+import Navbar from '../components/navbar';
 
 export function AddLibrary(urlOfTheLibrary) {
     const script = document.createElement("script");
@@ -23,17 +24,17 @@ export function AddLibrary(urlOfTheLibrary) {
     script.async = true;
     document.body.appendChild(script);
 }
- 
+
 const News = () => {
     const [newsData, setNewsData] = useState([]);
     const apiKey = import.meta.env.VITE_API_KEY;
-    const darkMode = useDarkMode();
+    const { darkMode } = useDarkMode();
 
     useEffect(() => {
         const fetchNews = async () => {
             try {
                 const response = await fetch(
-                    `https://newsapi.org/v2/everything?q=isro OR nasa OR spacex&language=en&apiKey=${apiKey}&sortBy=publishedAt&pageSize=5`
+                    `https://newsapi.org/v2/everything?q=rocket AND space&language=en&apiKey=${apiKey}&sortBy=publishedAt&pageSize=5`
                 );
                 const data = await response.json();
                 if (response.ok) {
@@ -79,6 +80,7 @@ const News = () => {
         prevArrow: <PrevArrow />,
     };
 
+    console.log(darkMode ? 'Yes' : 'no');
 
     return (
         <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
@@ -111,9 +113,6 @@ const News = () => {
                 </Slider>
             </div>
         </div>
-
-
-
         // <div class="container">
         //     <div class="carousel-3d carousel-3d-controls">
         //         <div class="carousel-3d-inner">
@@ -133,55 +132,8 @@ const News = () => {
         //         </div>
         //     </div>
         // </div>
-
-
-        // <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
-        //     <h1 className="text-3xl sm:text-6xl font-bold mb-20 ">Latest Space News</h1>
-        //     <div className="max-w-2xl mx-auto p-4 bg-gray-800 rounded">
-        //         <Swiper
-        //             spaceBetween={50}
-        //             slidesPerView={1}
-        //             navigation
-        //             pagination={{ clickable: true }}
-        //             scrollbar={{ draggable: true }}
-        //             onSlideChange={() => console.log('slide change')}
-        //             onSwiper={(swiper) => console.log(swiper)}
-        //             effect="cube"
-        //             cubeEffect={{
-        //                 shadow: true,
-        //                 slideShadows: true,
-        //                 shadowOffset: 20,
-        //                 shadowScale: 0.94,
-        //             }}
-        //         >
-        //             {newsData.map((article, index) => (
-        //                 <SwiperSlide key={index}>
-        //                     <a
-        //                         href={article.url}
-        //                         target="_blank"
-        //                         rel="noopener noreferrer"
-        //                         className="text-decoration-none"
-        //                     >
-        //                         <div className="bg-gray-700 p-4 rounded shadow-md" style={{ minHeight: '400px' }}>
-        //                             {article.urlToImage && (
-        //                                 <img
-        //                                     src={article.urlToImage}
-        //                                     alt="News Thumbnail"
-        //                                     className="mb-4 rounded"
-        //                                     style={{ width: '100%', height: '290px', objectFit: 'cover' }}
-        //                                 />
-        //                             )}
-        //                             <h2 className="text-xl text-left font-bold mb-2">{article.title}</h2>
-        //                             <p className="text-white mb-2 text-left ">{article.description}</p>
-        //                             <p className="absolute text-gray-100 bottom-0">Published At: {article.publishedAt}</p>
-        //                         </div>
-        //                     </a>
-        //                 </SwiperSlide>
-        //             ))}
-        //         </Swiper>
-        //     </div>
-        // </div>
     );
+
 };
 
 
