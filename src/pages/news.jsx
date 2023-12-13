@@ -70,7 +70,6 @@ const NewsCarousel = () => {
         prevArrow: <PrevArrow />,
     };
 
-    document.getElementsByClassName('carousel-3d-basic').mdbCarousel3d();
 
     return (
         <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
