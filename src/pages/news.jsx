@@ -7,9 +7,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { useDarkMode } from '../DarkModeContext';
-import 'particles.js';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
 
 const News = () => {
     const [newsData, setNewsData] = useState([]);
@@ -66,7 +63,6 @@ const News = () => {
         prevArrow: <PrevArrow />,
     };
 
-    document.getElementsByClassName('carousel-3d-basic').mdbCarousel3d();
 
     return (
         <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
