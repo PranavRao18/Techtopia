@@ -9,6 +9,7 @@ import Event4 from './Event4';
 import { textVariant } from '../utils/motion';
 import { motion } from 'framer-motion';
 import { SectionWrapper } from '../hoc';
+import NewsCarousel from './news';
 
 const Home = () => {
     const { darkMode } = useDarkMode();
@@ -32,6 +33,7 @@ const Home = () => {
             <Event2 />
             <Event3 />
             <Event4 />
+            <NewsCarousel/>
         </div>
         // </div>
     );
