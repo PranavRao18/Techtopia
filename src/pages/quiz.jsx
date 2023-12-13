@@ -4,6 +4,7 @@ import { Timer } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom'; // Update import
 import '../index.css';
 import Navbar from '../components/navbar';
+import { useDarkMode } from '../DarkModeContext';
 
 export function AddLibrary(urlOfTheLibrary) {
     const script = document.createElement("script");
@@ -72,17 +73,11 @@ const QuizPage = () => {
             "correctAnswer": "Constellation"
         }
     ];
-
-    const [bg, setBg] = useState(false);
-
+    
+    const { darkMode } = useDarkMode();
     
 
     useEffect(() => {
-
-        if (typeof particlesJS === "undefined") {
-            setBg(true);
-            AddLibrary("/index.js"); 
-        }
 
         const timer = setInterval(() => {
             if (timeLeft > 0) {
@@ -118,7 +113,7 @@ const QuizPage = () => {
 
     const handleQuizComplete = () => {
         return (
-            <div className="quiz-completed-card bg-white bg-opacity-80 p-8 rounded-md text-center max-w-md">
+            <div className="quiz-completed-card bg-white p-8 rounded-md text-center max-w-md">
                 <h2 className="text-2xl font-bold mb-4 text-black">Quiz Completed!</h2>
                 <p className="text-lg mb-4 text-black">Your total score is {score}/{questions.length}</p>
                 <button
@@ -133,16 +128,17 @@ const QuizPage = () => {
 
     return (
         <>
+        <div id={`${darkMode ? 'particles-js-light' : 'particles-js'}`} className='absolute top-0 z-0 h-screen w-screen m-0'>{`${darkMode ? AddLibrary("/index-light.js") :  AddLibrary("/index.js") }`}</div>
         <Navbar/>
-        <div id='particles-js' className="quiz-page flex items-center justify-center h-screen bg-black w-screen}}">
-            <div className="quiz-card bg-white bg-opacity-80 p-8 rounded-md text-center max-w-md relative">
+        <div className="quiz-page flex items-center justify-center h-screen bg-black w-screen}}">
+            <div className={`quiz-card ${darkMode ? 'bg-black' : 'bg-white' } p-8 rounded-md text-center max-w-md relative`}>
                 {quizCompleted ? (
                     handleQuizComplete()
                 ) : (
                     <React.Fragment>
                         <div className="absolute top-[0.40rem] right-[1rem]">
-                            <Timer style={{ color: 'black' }} />
-                            <span className="ml-2" style={{ color: 'black' }}>{timeLeft}s</span>
+                            <Timer style={{ color: darkMode ? 'white' : 'black' }} />
+                            <span className="ml-2" style={{ color: darkMode ? 'white' : 'black' }}>{timeLeft}s</span>
                         </div>
                         <QuizQuestion
                             question={questions[currentQuestion].question}
@@ -153,7 +149,7 @@ const QuizPage = () => {
                             <ul>
                                 {questions[currentQuestion].options.map((option, index) => (
                                     <li key={index} className="text-lg mb-2 option-item" onClick={() => handleAnswer(option)}>
-                                        <label className="inline-flex items-center" style={{ color: 'black' }}>
+                                        <label className="inline-flex items-center" style={{ color: darkMode ? 'white' : 'black' }}>
                                             <input
                                                 type="radio"
                                                 id={`option${index}`}
@@ -161,7 +157,7 @@ const QuizPage = () => {
                                                 value={option}
                                                 checked={selectedAnswer === option}
                                                 onChange={() => handleAnswer(option)}
-                                                className="form-radio h-5 w-5 text-black"
+                                                className={`form-radio h-5 w-5 ${darkMode ? 'bg-black' : 'bg-white' } `}
                                             />
                                             <span className="ml-2">{option}</span>
                                         </label>
@@ -178,7 +174,6 @@ const QuizPage = () => {
                     </React.Fragment>
                 )}
             </div>
-            {!bg && AddLibrary("/index.js")}
         </div>
         </>
     );
