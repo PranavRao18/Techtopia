@@ -118,7 +118,7 @@ const QuizPage = () => {
                 <p className="text-lg mb-4 text-black">Your total score is {score}/{questions.length}</p>
                 <button
                     className="next-button bg-[#6891FF] text-white px-4 py-2 rounded-md"
-                    onClick={() => navigate('/home')} 
+                    onClick={() => navigate('/')} 
                 >
                     Home Page
                 </button>
