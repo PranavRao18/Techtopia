@@ -128,7 +128,7 @@ const QuizPage = () => {
 
     return (
         <>
-        <div id={`${darkMode ? 'particles-js-light' : 'particles-js'}`} className='absolute top-0 z-0 h-screen w-screen m-0'>{`${darkMode ? AddLibrary("/index-light.js") :  AddLibrary("/index.js") }`}</div>
+        <div id={`${darkMode ? 'particles-js-light' : 'particles-js'}`} className='absolute top-0 z-0 h-screen w-screen m-0 overflow-hidden'>{`${darkMode ? AddLibrary("/index-light.js") :  AddLibrary("/index.js") }`}</div>
         <Navbar/>
         <div className="quiz-page flex items-center justify-center h-screen bg-black w-screen}}">
             <div className={`quiz-card ${darkMode ? 'bg-black' : 'bg-white' } p-8 rounded-md text-center max-w-md relative`}>
