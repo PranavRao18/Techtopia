@@ -1,18 +1,5 @@
-// NewsCarousel.jsx
-
 import React, { useState, useEffect } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-// news.jsx
-// import '../../node_modules/swiper/swiper.css'; // This line is important
-// import { Swiper, SwiperSlide } from 'swiper/react';
-// import { Navigation, Pagination, Scrollbar, A11y, EffectCube } from 'swiper';
-// import 'swiper/css/swiper-bundle.min.css';
-
-
-// ... rest of your code
-
+import { Carousel } from 'react-bootstrap';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import { useDarkMode } from '../DarkModeContext';
@@ -50,8 +37,6 @@ const News = () => {
         fetchNews();
     }, [apiKey]);
 
-
-
     const NextArrow = (props) => {
         const { className, onClick } = props;
         return (
@@ -70,71 +55,51 @@ const News = () => {
         );
     };
 
-    const settings = {
-        dots: true,
-        infinite: false,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
-    };
-
     console.log(darkMode ? 'Yes' : 'no');
 
     return (
-        <div id="particles-js" className={`${darkMode ? 'bg-black' : 'bg-white'} text-center mb-20 pt-20`}>
-            <h1 className="text-3xl sm:text-6xl font-bold mb-20 ">Latest Space News</h1>
-            <div className="max-w-2xl mx-auto p-4 bg-gray-800 rounded">
-                <Slider {...settings}>
-                    {newsData.map((article, index) => (
-                        <a
-                            key={index}
-                            href={article.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-decoration-none"
-                        >
-                            <div className="bg-gray-700 p-4 rounded shadow-md" style={{ minHeight: '400px' }}>
-                                {article.urlToImage && (
-                                    <img
-                                        src={article.urlToImage}
-                                        alt="News Thumbnail"
-                                        className="mb-4 rounded"
-                                        style={{ width: '100%', height: '290px', objectFit: 'cover' }}
-                                    />
-                                )}
-                                <h2 className="text-xl text-left font-bold mb-2">{article.title}</h2>
-                                <p className="text-white mb-2 text-left ">{article.description}</p>
-                                <p className="absolute text-gray-100 bottom-0">Published At: {article.publishedAt}</p>
-                            </div>
-                        </a>
-                    ))}
-                </Slider>
+        <>
+            <div id={`${darkMode ? 'particles-js-light' : 'particles-js'}`} className='absolute top-0 z-0 h-screen w-screen overflow-hidden'>{`${darkMode ? AddLibrary("/index-light.js") : AddLibrary("/index.js")}`}</div>
+            <div className={`w-screen h-screen flex items-center pt-20 fixed top-0 z-19 bg-clear`}>
+                <Navbar />
+                <div className={`text-center mb-20 pt-20 sm:pt-40 w-full`}>
+                <h1 className={`text-3xl sm:text-6xl font-bold mb-4 sm:mb-20 ${darkMode ? 'text-black' : 'text-white'}`}>Latest Space News</h1>
+                <div className="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 xl:w-1/2 mx-auto">
+                    <Carousel
+                        indicators={true}
+                        nextIcon={<NextArrow />}
+                        prevIcon={<PrevArrow />}
+                    >
+                        {newsData.map((article, index) => (
+                            <Carousel.Item key={index}>
+                                <a
+                                    href={article.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-decoration-none d-block"
+                                >
+                                    <div className="bg-gray-700 p-4 rounded shadow-md mx-auto" style={{ minHeight: '400px' }}>
+                                        {article.urlToImage && (
+                                            <img
+                                                src={article.urlToImage}
+                                                alt="News Thumbnail"
+                                                className="mb-4 rounded"
+                                                style={{ width: '100%', height: '290px', objectFit: 'cover' }}
+                                            />
+                                        )}
+                                        <h2 className="text-xl text-left font-bold mb-2 text-white">{article.title}</h2>
+                                        <p className="text-white mb-2 text-left ">{article.description}</p>
+                                        <p className="text-gray-100 mb-2">Published At: {article.publishedAt}</p>
+                                    </div>
+                                </a>
+                            </Carousel.Item>
+                        ))}
+                    </Carousel>
+                </div>
             </div>
-        </div>
-        // <div class="container">
-        //     <div class="carousel-3d carousel-3d-controls">
-        //         <div class="carousel-3d-inner">
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(46).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(45).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(47).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(48).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(49).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(50).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(51).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(52).webp" alt="Slide"/></div>
-        //             <div class="carousel-3d-item"><img src="https://mdbootstrap.com/img/Photos/Slides/img%20(53).webp" alt="Slide"/></div>
-        //         </div>
-        //         <div class="carousel-3d-controls">
-        //             <a class="prev-btn waves-effect waves-light"><i class="fas fa-chevron-left"></i></a>
-        //             <a class="next-btn waves-effect waves-light"><i class="fas fa-chevron-right"></i></a>
-        //         </div>
-        //     </div>
-        // </div>
+            </div>
+        </>
     );
-
 };
-
 
 export default News;
