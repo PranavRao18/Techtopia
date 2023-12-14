@@ -23,7 +23,7 @@ function Navbar() {
                         window.scrollTo(0, 0);
                     }}
                 >
-                    <p className={darkMode ? 'text-black text-[22px] font-semibold cursor-pointer' : 'text-white text-[22px] font-semibold cursor-pointer'}>InfinityVoyage</p>
+                    <p className={darkMode ? 'text-black text-[22px] font-semibold cursor-pointer' : 'text-white text-[22px] font-semibold cursor-pointer'}>StellarGaze</p>
                 </Link>
                 <ul className='list-none hidden sm:flex flex-row gap-20'>
                     <li
